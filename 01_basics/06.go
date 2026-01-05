@@ -46,4 +46,16 @@ func main(){
 
 	slice4 := make([]int, 3,5);
 	fmt.Printf("s:%v l:%d c:%d\n", slice4, len(slice4), cap(slice4));
+
+	// スライスの[low:high] 
+	numbers := []int{1,2,3,4,5,6,7,8,9}
+	fmt.Printf("%v", numbers[1:4])
+	fmt.Printf("%v", numbers[:4])
+	fmt.Printf("%v", numbers[1:])
+	fmt.Printf("%v", numbers[:])
+
+	// sliceの結合
+	// ...は展開演算子といってスライスの中身をバラバラにして返す。
+	var connect = append(slice1, slice2...);
+	fmt.Printf("%v", connect);
 }
