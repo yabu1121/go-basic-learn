@@ -72,4 +72,25 @@ func main(){
 		},
 	}
 	println(students)
+
+
+	// 構造体
+		type Person struct {
+		Name string
+		Age  int
+	}
+
+	// rune = int32
+	fmt.Println("\n=== 実用例：文字カウンター ===")
+
+	text := "hello world"
+	charCount := make(map[rune]int)
+
+	for _, char := range text {
+		charCount[char]++
+	}
+
+	for char, count := range charCount {
+		fmt.Printf("'%c': %d回\n", char, count)
+	}
 }
