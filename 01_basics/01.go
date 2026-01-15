@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 /*
 【01_hello.go の練習問題】
@@ -57,9 +60,35 @@ func problem1() {
 - fmt.Sprintf()を使って文字列を作成できます
 */
 
+func formatYen (n int) string {
+	s := strconv.Itoa(n)
+	res := ""
+	length := len(s)
+
+	for i,v := range s {
+		if i > 0 && (length - i) % 3 == 0{
+			res += ","
+		}
+		res += string(v)
+	}
+	return res
+}
+
 func problem2() {
 	// ここにコードを書いてください
-
+	var name string= "ノートパソコン"
+	var price int = 89800
+	var stock int = 15
+	var discount_late int = 10
+	var infomation string = fmt.Sprintf(
+		"商品名: %s	\n価格: ￥%s\n在庫数: %d個\n割引率: %d%% \n割引後価格: ￥%s",
+		name, 
+		formatYen(price), 
+		stock, 
+		discount_late, 
+		formatYen(price*(100-discount_late)/100),
+	)
+	fmt.Println(infomation)
 }
 
 // ========== 問題3 ==========
