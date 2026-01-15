@@ -61,6 +61,7 @@ func problem1() {
 */
 
 func formatYen (n int) string {
+	// strconv => 文字列変換 string conversion itoa は　integer to ascii 
 	s := strconv.Itoa(n)
 	res := ""
 	length := len(s)
@@ -113,7 +114,8 @@ fmt.Sprintf()を使って、以下のような複数行のメッセージを1つ
 
 func problem3() {
 	// ここにコードを書いてください
-
+  var msg string = fmt.Sprintf("━━━━━━━━━━━━━━━━━━━━\nシステム起動メッセージ\n━━━━━━━━━━━━━━━━━━━━\nユーザー: admin\nログイン時刻: 2024-01-15 10:30:00\nシステムバージョン: v1.2.3\n━━━━━━━━━━━━━━━━━━━━\n")
+fmt.Println(msg)
 }
 
 func main() {
