@@ -17,8 +17,10 @@ func main(){
 		"花子": 23,
 		"次郎": 30,
 	}
+	// キーバリューがmap[key]value
 	fmt.Printf("m3: %v\n", m3)
 
+	// makeで作る
 	ages := make(map[string]int)
 
 	ages["吉田"] = 2
@@ -29,8 +31,45 @@ func main(){
 	fmt.Printf("%v", ages)
 	fmt.Printf("%v", ages["太郎"])
 	fmt.Printf("%v", ages["吉田"])
+	// 存在しないならageに0が入る
 	age, exists := ages["太郎"]
 	fmt.Print(age, exists)
 	age, exists = ages["吉田"]
 	fmt.Print(age, exists)
+
+	fmt.Println("")
+	fmt.Println("削除")
+	fmt.Printf("%v\n", m3)
+	// delete(mapの変数、key)
+	delete(m3, "太郎")
+	fmt.Printf("%v\n", m3)
+
+
+	scores := map[string]int{
+		"数学": 85,
+		"英語": 92,
+		"国語": 78,
+		"理科": 88,
+	}
+
+		// キーと値の両方
+	for subject, score := range scores {
+		fmt.Printf("%s: %d点\n", subject, score)
+	}
+
+	fmt.Println(len(scores))
+
+
+	// ネストマップの宣言
+		students := map[string]map[string]int{
+		"太郎": {
+			"数学": 85,
+			"英語": 90,
+		},
+		"花子": {
+			"数学": 95,
+			"英語": 88,
+		},
+	}
+	println(students)
 }
