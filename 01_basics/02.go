@@ -30,7 +30,12 @@ import "fmt"
 
 func problem1() {
 	// ここにコードを書いてください
-
+	var celsius float32 = 25.0
+	var fahrenheit float32 = celsius * 9 / 5 + 32
+	var cmsg string = fmt.Sprintf("%.1f°C", celsius)
+	fmt.Println(cmsg)
+	var fmsg string = fmt.Sprintf("%.1f°F", fahrenheit)
+	fmt.Println(fmsg)
 }
 
 // ========== 問題2 ==========
