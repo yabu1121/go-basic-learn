@@ -26,7 +26,11 @@ import "fmt"
 
 func problem1() {
 	// ここにコードを書いてください
-
+ var name string = "hayato"
+ var age int = 20
+ var prefecture string = "Saitama"
+ fmt.Println("初めまして")
+ fmt.Printf("%s, %d, %s \n",name, age, prefecture)
 }
 
 // ========== 問題2 ==========
