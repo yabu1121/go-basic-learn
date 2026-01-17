@@ -107,16 +107,25 @@ func problem2() {
 	var age int = 25
 	var money int = 3000
 	var isMember bool = true
+	// r := result{
+	// 	IsAdult: false,
+	// 	AvailableForPurchase: false,
+	// 	EligibleForDiscount: false,
+	// 	Offer: false,
+	// }
+	// if (age >= 20){ r.IsAdult = true }
+	// if (money >= 1000){ r.AvailableForPurchase = true }
+	// if (r.IsAdult && isMember){ r.EligibleForDiscount = true }
+	// if (isMember || money >= 5000){ r.Offer = true }
+
+	// 初期化中の自己参照はエラーを起こす
+	// 段階的に実装するかもしくは元のデータを使うかで修正する必要がある。
 	r := result{
-		IsAdult: false,
-		AvailableForPurchase: false,
-		EligibleForDiscount: false,
-		Offer: false,
+		IsAdult: age >= 20,
+		AvailableForPurchase: money >= 1000,
+		EligibleForDiscount: (age >= 20) && isMember,
+		Offer: isMember || money >= 5000,
 	}
-	if (age >= 20){ r.IsAdult = true }
-	if (money >= 1000){ r.AvailableForPurchase = true }
-	if (r.IsAdult && isMember){ r.EligibleForDiscount = true }
-	if (isMember || money >= 5000){ r.Offer = true }
 	fmt.Println("========== ユーザー情報 ==========")
 	fmt.Printf("age: %d\n",age)	
 	fmt.Printf("money: %d\n",money)	
