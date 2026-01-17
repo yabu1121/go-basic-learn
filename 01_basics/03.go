@@ -73,8 +73,18 @@ char2: '日' (Unicode: U+65E5, 10進数: 26085, 型: int32)
 */
 
 func problem2() {
-	// ここにコードを書いてください
-
+	// rune: int32, %T type %d 10進数 %U unicode
+	//  シングルくおーとで囲むと型推論でruneになる
+	// アルファベットは1文字1バイト、日本語utf-8は一文字バイト
+	var message string = "Hello, 世界!"
+	var char1 rune = 'A'
+	var char2 rune = '日'
+	fmt.Println(message)
+	fmt.Printf("byte %d\n",len(message))
+	fmt.Printf("'%c'\n",char1)
+	fmt.Printf("unicode: %U 10: %d 型: %T\n",char1,char1,char1)
+	fmt.Printf("'%c'\n",char2)
+	fmt.Printf("unicode: %U 10: %d 型: %T\n",char2,char2,char2)
 }
 
 // ========== 問題3 ==========
