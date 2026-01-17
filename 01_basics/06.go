@@ -41,8 +41,21 @@ import "fmt"
 */
 
 func problem1() {
-	// ここにコードを書いてください
+	// 配列とスライスの違い
 
+	// len　スライスの現在の要素数を返す
+	// cap スライスが確保しているメモリの最大数
+	// append(s, val) s(すらいす)の末尾にvalを更新して、返す
+	// make([]型, len, cap)長さと容量を指定してスライスを作成する
+	// copy(dest, src) スライスの内容をスライスにコピーする
+	slice1 := []int{1,2,3,4,5}
+	array1 := [8]int{1,2,3,4,5}
+	fmt.Printf("len: %d, cap: %d, そのまま: %v\n",len(slice1), cap(slice1), slice1)
+	fmt.Printf("len: %d, cap: %d, そのまま: %v\n",len(array1), cap(array1), array1)
+	fmt.Printf("部分スライス%v\n", slice1[1:])
+	slice1 = append(slice1, 2,2)
+	// 容量が足りなくなると二倍のメモリ領域を確保する。
+	fmt.Printf("len: %d, cap: %d, そのまま: %v\n",len(slice1), cap(slice1), slice1)
 }
 
 // ========== 問題2 ==========
