@@ -42,15 +42,16 @@ import "fmt"
 func problem1() {
 	// ここにコードを書いてください
    var score int = 45
-   var rank string = ""
-   var comment string = ""
-   if (score >= 90){
+   var rank string
+   var comment string
+   // ifに()不要
+   if score >= 90{
       rank = "A"
-   }else if(score >= 80){
+   }else if score >= 80 {
       rank = "B"
-   }else if(score >= 70){
+   }else if score >= 70 {
       rank = "C"
-   }else if(score >= 60){
+   }else if score >= 60 {
       rank = "D"
    }else{
       rank = "F"
