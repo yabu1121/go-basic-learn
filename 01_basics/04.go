@@ -41,8 +41,29 @@ result %= 7 → 4
 */
 
 func problem1() {
-	// ここにコードを書いてください
+	var a int = 17
+	var b int = 5
+	result := a + b
+	fmt.Printf("%d\n", result)
+	result = a - b
+	fmt.Printf("%d\n", result)
+	result = a * b
+	fmt.Printf("%d\n", result)
+	result = a / b
+	fmt.Printf("%d\n", result)
+	result = a % b
+	fmt.Printf("%d\n", result)
 
+	result = a + b
+	fmt.Printf("%d\n", result)
+	result -= a - b
+	fmt.Printf("%d\n", result)
+	result *= a * b
+	fmt.Printf("%d\n", result)
+	result /= a / b
+	fmt.Printf("%d\n", result)
+	result %= a % b
+	fmt.Printf("%d\n", result)
 }
 
 // ========== 問題2 ==========
