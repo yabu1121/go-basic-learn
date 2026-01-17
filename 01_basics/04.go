@@ -189,48 +189,85 @@ type Auth struct {
 }
 
 func problem3() {
-	a := Auth{
-		READ : 1,
-		WRITE : 2,
-		EXECUTE : 4,
-		DELETE : 8,
-		INITIAL : 3,
-		READFLAG: false,
-		WRITEFLAG: false,
-		EXECUTEFLAG: false,
-		DELETEFLAG: false,
-	}
-	// 左シフト演算です
-	// READ <<= 3
+	// a := Auth{
+	// 	READ : 1,
+	// 	WRITE : 2,
+	// 	EXECUTE : 4,
+	// 	DELETE : 8,
+	// 	INITIAL : 3,
+	// 	READFLAG: false,
+	// 	WRITEFLAG: false,
+	// 	EXECUTEFLAG: false,
+	// 	DELETEFLAG: false,
+	// }
+	// // 左シフト演算です
+	// // READ <<= 3
 
-	fmt.Printf("%04b\n", a.READ)
-	fmt.Printf("%04b\n", a.WRITE)
-	fmt.Printf("%04b\n", a.EXECUTE)
-	fmt.Printf("%04b\n", a.DELETE)
-	fmt.Printf("%04b\n", a.INITIAL)
+	// fmt.Printf("%04b\n", a.READ)
+	// fmt.Printf("%04b\n", a.WRITE)
+	// fmt.Printf("%04b\n", a.EXECUTE)
+	// fmt.Printf("%04b\n", a.DELETE)
+	// fmt.Printf("%04b\n", a.INITIAL)
 
-	resREAD := a.INITIAL & a.READ
-	resWRITE := (a.INITIAL & a.WRITE) / 2
-	resEXECUTE := (a.INITIAL & a.EXECUTE) / 4
-	resDELETE := (a.INITIAL & a.DELETE) / 8
+	// resREAD := a.INITIAL & a.READ
+	// resWRITE := (a.INITIAL & a.WRITE) / 2
+	// resEXECUTE := (a.INITIAL & a.EXECUTE) / 4
+	// resDELETE := (a.INITIAL & a.DELETE) / 8
 
-	fmt.Printf("初期権限: %04b\n", a.INITIAL)
-	if(resREAD == 1){
-		a.READFLAG = true
-	}
-	if(resWRITE == 1){
-		a.WRITEFLAG = true
-	}
-	if(resEXECUTE == 1){
-		a.EXECUTEFLAG = true
-	}
-	if(resDELETE == 1){
-		a.DELETEFLAG = true
-	}
-	fmt.Printf("READ権限あり: %t\n", a.READFLAG)
-	fmt.Printf("WRITE権限あり: %t\n", a.WRITEFLAG)
-	fmt.Printf("EXECUTE権限あり: %t\n", a.EXECUTEFLAG)
-	fmt.Printf("DELETE権限あり: %t\n", a.DELETEFLAG)
+	// fmt.Printf("初期権限: %04b\n", a.INITIAL)
+	// if(resREAD == 1){
+	// 	a.READFLAG = true
+	// }
+	// if(resWRITE == 1){
+	// 	a.WRITEFLAG = true
+	// }
+	// if(resEXECUTE == 1){
+	// 	a.EXECUTEFLAG = true
+	// }
+	// if(resDELETE == 1){
+	// 	a.DELETEFLAG = true
+	// }
+	// fmt.Printf("READ権限あり: %t\n", a.READFLAG)
+	// fmt.Printf("WRITE権限あり: %t\n", a.WRITEFLAG)
+	// fmt.Printf("EXECUTE権限あり: %t\n", a.EXECUTEFLAG)
+	// fmt.Printf("DELETE権限あり: %t\n", a.DELETEFLAG)
+	const (
+        READ    = 1 // 0001
+        WRITE   = 2 // 0010
+        EXECUTE = 4 // 0100
+        DELETE  = 8 // 1000
+    )
+	flags := 9
+
+	fmt.Println("========== 権限管理システム ==========")
+	fmt.Printf("READ権限:    %d (%04b)\n", READ, READ)
+	fmt.Printf("WRITE権限:   %d (%04b)\n", WRITE, WRITE)
+	fmt.Printf("EXECUTE権限: %d (%04b)\n", EXECUTE, EXECUTE)
+	fmt.Printf("DELETE権限:  %d (%04b)\n", DELETE, DELETE)
+	fmt.Println("---")
+
+	// 3. 権限確認（定石の書き方）
+	// (flags & マスク) != 0 が true ならそのビットは立っている
+	hasRead := (flags & READ) != 0
+	hasWrite := (flags & WRITE) != 0
+	hasExecute := (flags & EXECUTE) != 0
+	hasDelete := (flags & DELETE) != 0
+
+	fmt.Printf("初期権限: %d (%04b)\n", flags, flags)
+	fmt.Printf("READ権限あり:    %t\n", hasRead)
+	fmt.Printf("WRITE権限あり:   %t\n", hasWrite)
+	fmt.Printf("EXECUTE権限あり: %t\n", hasExecute)
+	fmt.Printf("EXECUTE権限あり: %t\n", hasDelete)
+	fmt.Println("---")
+
+	// 4. EXECUTE権限を追加 (OR演算)
+	flags |= EXECUTE
+	fmt.Printf("EXECUTE権限追加後: %d (%04b)\n", flags, flags)
+
+	// 5. WRITE権限を削除 (AND NOT演算)
+	// &^ は「右側で指定したビットを強制的に0にする」演算子
+	flags &^= WRITE
+	fmt.Printf("WRITE権限削除後:   %d (%04b)\n", flags, flags)
 }
 
 func main() {
