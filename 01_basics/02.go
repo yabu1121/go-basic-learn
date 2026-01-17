@@ -67,21 +67,49 @@ ID: 12345
 - ゼロ値の理解
 */
 
+type Person struct {
+	Id int
+	Name string
+	Email string
+	Age int
+	Is_Premium bool
+	Point float64
+}
+
+// func problem2() {
+// 	// ここにコードを書いてください
+// 	var user_id int = 12345
+// 	var user_name string = "田中花子"
+// 	var user_email string = "hanako@example.com"
+// 	var user_age int = 28
+// 	var user_is_premium bool = true
+// 	var user_point float64 = 1500.50
+
+// 	fmt.Printf("ID: %d\n", user_id)
+// 	fmt.Printf("名前: %s\n", user_name)
+// 	fmt.Printf("メール: %s\n", user_email)
+// 	fmt.Printf("年齢: %d歳\n", user_age)
+// 	fmt.Printf("プレミアム会員: %v\n", user_is_premium)
+// 	fmt.Printf("Iポイント残高 %.2fpt\n", user_point)
+// }
+
 func problem2() {
 	// ここにコードを書いてください
-	var user_id int = 12345
-	var user_name string = "田中花子"
-	var user_email string = "hanako@example.com"
-	var user_age int = 28
-	var user_is_premium bool = true
-	var user_point float64 = 1500.50
+	// var p Person = new(Person)
+  p := new(Person)
+	p.Id = 12345
+	p.Name = "田中花子"
+	p.Email = "hanako@example.com"
+	p.Age = 28
+	p.Is_Premium = true
+	p.Point = 1500.50
 
-	fmt.Printf("ID: %d\n", user_id)
-	fmt.Printf("名前: %s\n", user_name)
-	fmt.Printf("メール: %s\n", user_email)
-	fmt.Printf("年齢: %d歳\n", user_age)
-	fmt.Printf("プレミアム会員: %v\n", user_is_premium)
-	fmt.Printf("Iポイント残高 %.2fpt\n", user_point)
+	fmt.Printf("ID: %d\n", p.Id)
+	fmt.Printf("名前: %s\n", p.Name)
+	fmt.Printf("メール: %s\n", p.Email)
+	fmt.Printf("年齢: %d歳\n", p.Age)
+	fmt.Printf("プレミアム会員: %v\n", p.Is_Premium)
+	fmt.Printf("Iポイント残高 %.2fpt\n", p.Point)
 }
 
 // ========== 問題3 ==========
