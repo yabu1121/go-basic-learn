@@ -96,13 +96,22 @@ type Person struct {
 func problem2() {
 	// ここにコードを書いてください
 	// var p Person = new(Person)
-  p := new(Person)
-	p.Id = 12345
-	p.Name = "田中花子"
-	p.Email = "hanako@example.com"
-	p.Age = 28
-	p.Is_Premium = true
-	p.Point = 1500.50
+  // p := new(Person)
+	// p.Id = 12345
+	// p.Name = "田中花子"
+	// p.Email = "hanako@example.com"
+	// p.Age = 28
+	// p.Is_Premium = true
+	// p.Point = 1500.50
+
+	p := Person {
+		Id: 12345,
+		Name: "田中花子",
+		Email: "hanako@example.com",
+		Age: 28,
+		Is_Premium: true,
+		Point: 1500.50,
+	}
 
 	fmt.Printf("ID: %d\n", p.Id)
 	fmt.Printf("名前: %s\n", p.Name)
