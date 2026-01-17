@@ -107,8 +107,16 @@ forループを使って九九の表を出力してください。
 */
 
 func problem2() {
-	// ここにコードを書いてください
-
+   skip := 5
+   for i := 1; i < 10; i++ {
+      if i == skip {
+         continue
+      }
+      fmt.Printf("------%dの段------\n",i)
+      for j := 1; j < 10; j++ {
+         fmt.Printf("%2d * %2d = %2d \n", i, j , i*j)
+      }
+   }
 }
 
 // ========== 問題3 ==========
