@@ -146,11 +146,11 @@ func problem2() {
 */
 
 func problem3() {
-	// ここにコードを書いてください
-	const Pi float32 = 3.1415926535
-	var radius float32 = 5.0
-	var area float32 = Pi * radius * radius
-	var circumference float32 = 2 * Pi * radius
+	// きほんてきにGoではfloatは64, constには型を指定しない
+	const Pi = 3.1415926535
+	var radius float64 = 5.0
+	var area float64 = Pi * radius * radius
+	var circumference float64 = 2 * Pi * radius
 	fmt.Printf("半径: %.2fcm\n",radius)
 	fmt.Printf("円周: %.2fcm\n",circumference)
 	fmt.Printf("面積: %.2f㎠\n",area)
