@@ -37,7 +37,15 @@ c = 2.500 (型: float64)
 
 func problem1() {
 	// ここにコードを書いてください
-
+	var a int = 10
+	var b int = 3
+	var c float64 = 2.5
+	resAB := a / b
+	resfAB := float64(a) / float64(b)
+	resfAC := float64(a) * c
+	fmt.Printf("%d, %T\n",resAB,resAB)
+	fmt.Printf("%f, %T\n",resfAB,resfAB)
+	fmt.Printf("%f, %T\n",resfAC,resfAC)
 }
 
 // ========== 問題2 ==========
