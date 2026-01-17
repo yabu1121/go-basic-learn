@@ -96,10 +96,36 @@ func problem1() {
 - 論理演算子（&&, ||, !）
 - 複合条件の評価
 */
+type result struct {
+	IsAdult bool
+	AvailableForPurchase bool
+	EligibleForDiscount bool
+	Offer bool
+}
 
 func problem2() {
-	// ここにコードを書いてください
-
+	var age int = 25
+	var money int = 3000
+	var isMember bool = true
+	r := result{
+		IsAdult: false,
+		AvailableForPurchase: false,
+		EligibleForDiscount: false,
+		Offer: false,
+	}
+	if (age >= 20){ r.IsAdult = true }
+	if (money >= 1000){ r.AvailableForPurchase = true }
+	if (r.IsAdult && isMember){ r.EligibleForDiscount = true }
+	if (isMember || money >= 5000){ r.Offer = true }
+	fmt.Println("========== ユーザー情報 ==========")
+	fmt.Printf("age: %d\n",age)	
+	fmt.Printf("money: %d\n",money)	
+	fmt.Printf("isMember: %t\n",isMember)	
+	fmt.Println("========== 判定結果 ==========")
+	fmt.Printf("成人: %t\n", r.IsAdult)	
+	fmt.Printf("購入可能: %t\n", r.AvailableForPurchase)	
+	fmt.Printf("割引対象: %t\n", r.EligibleForDiscount)	
+	fmt.Printf("特別オファー: %t\n", r.Offer)	
 }
 
 // ========== 問題3 ==========
