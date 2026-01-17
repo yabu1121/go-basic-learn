@@ -41,7 +41,32 @@ import "fmt"
 
 func problem1() {
 	// ここにコードを書いてください
+   var score int = 45
+   var rank string = ""
+   var comment string = ""
+   if (score >= 90){
+      rank = "A"
+   }else if(score >= 80){
+      rank = "B"
+   }else if(score >= 70){
+      rank = "C"
+   }else if(score >= 60){
+      rank = "D"
+   }else{
+      rank = "F"
+   }
 
+   switch rank{
+      case "A": comment = "優秀です！"
+      case "B": comment = "良好です"
+      case "C": comment = "合格です"
+      case "D": comment = "もう少し頑張りましょう"
+      case "F": comment = "不合格です"
+   }
+
+   fmt.Printf("点数: %d\n", score)
+   fmt.Printf("評価: %s\n", rank)
+   fmt.Printf("コメント: %s\n", comment)
 }
 
 // ========== 問題2 ==========

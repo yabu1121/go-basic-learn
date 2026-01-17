@@ -266,6 +266,7 @@ func problem3() {
 
 	// 5. WRITE権限を削除 (AND NOT演算)
 	// &^ は「右側で指定したビットを強制的に0にする」演算子
+	// &^ and not ですこれは
 	flags &^= WRITE
 	fmt.Printf("WRITE権限削除後:   %d (%04b)\n", flags, flags)
 }
