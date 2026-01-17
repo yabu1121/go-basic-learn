@@ -69,7 +69,19 @@ ID: 12345
 
 func problem2() {
 	// ここにコードを書いてください
+	var user_id int = 12345
+	var user_name string = "田中花子"
+	var user_email string = "hanako@example.com"
+	var user_age int = 28
+	var user_is_premium bool = true
+	var user_point float64 = 1500.50
 
+	fmt.Printf("ID: %d\n", user_id)
+	fmt.Printf("名前: %s\n", user_name)
+	fmt.Printf("メール: %s\n", user_email)
+	fmt.Printf("年齢: %d歳\n", user_age)
+	fmt.Printf("プレミアム会員: %v\n", user_is_premium)
+	fmt.Printf("Iポイント残高 %.2fpt\n", user_point)
 }
 
 // ========== 問題3 ==========
