@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 【03_types.go の練習問題】
@@ -118,8 +120,24 @@ float64: 3.141592653589793
 */
 
 func problem3() {
-	// ここにコードを書いてください
+// こんなのも使えるよ 
+// math.MaxInt8
+// math.MaxUint16
 
+// math.Pi
+	var maxint8 int8 = 127
+	var minint8 int8 = -128
+	var maxuint8 uint8 = 255
+	var maxuint16 uint16 = 32767
+	const Pi = 3.141592653589793
+	var fl32 float32 = Pi
+	var fl64 float64 = Pi
+	fmt.Printf("%d\n", maxint8)
+	fmt.Printf("%d\n", minint8)
+	fmt.Printf("%d\n", maxuint8)
+	fmt.Printf("%d\n", maxuint16)
+	fmt.Printf("%.20f\n", fl32)
+	fmt.Printf("%.20f\n", fl64)
 }
 
 func main() {
