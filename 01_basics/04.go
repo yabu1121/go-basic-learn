@@ -176,10 +176,61 @@ WRITE権限削除後: 5 (0101) [READ, EXECUTE]
 - 権限確認: (flags & permission) != 0
 - 2進数表示: fmt.Printf("%04b", num)
 */
+type Auth struct {
+	READ int
+	WRITE int
+	EXECUTE int
+	DELETE int
+	INITIAL int
+	READFLAG bool
+	WRITEFLAG bool
+	EXECUTEFLAG bool
+	DELETEFLAG bool
+}
 
 func problem3() {
-	// ここにコードを書いてください
+	a := Auth{
+		READ : 1,
+		WRITE : 2,
+		EXECUTE : 4,
+		DELETE : 8,
+		INITIAL : 3,
+		READFLAG: false,
+		WRITEFLAG: false,
+		EXECUTEFLAG: false,
+		DELETEFLAG: false,
+	}
+	// 左シフト演算です
+	// READ <<= 3
 
+	fmt.Printf("%04b\n", a.READ)
+	fmt.Printf("%04b\n", a.WRITE)
+	fmt.Printf("%04b\n", a.EXECUTE)
+	fmt.Printf("%04b\n", a.DELETE)
+	fmt.Printf("%04b\n", a.INITIAL)
+
+	resREAD := a.INITIAL & a.READ
+	resWRITE := (a.INITIAL & a.WRITE) / 2
+	resEXECUTE := (a.INITIAL & a.EXECUTE) / 4
+	resDELETE := (a.INITIAL & a.DELETE) / 8
+
+	fmt.Printf("初期権限: %04b\n", a.INITIAL)
+	if(resREAD == 1){
+		a.READFLAG = true
+	}
+	if(resWRITE == 1){
+		a.WRITEFLAG = true
+	}
+	if(resEXECUTE == 1){
+		a.EXECUTEFLAG = true
+	}
+	if(resDELETE == 1){
+		a.DELETEFLAG = true
+	}
+	fmt.Printf("READ権限あり: %t\n", a.READFLAG)
+	fmt.Printf("WRITE権限あり: %t\n", a.WRITEFLAG)
+	fmt.Printf("EXECUTE権限あり: %t\n", a.EXECUTEFLAG)
+	fmt.Printf("DELETE権限あり: %t\n", a.DELETEFLAG)
 }
 
 func main() {
