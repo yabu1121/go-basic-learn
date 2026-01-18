@@ -101,26 +101,28 @@ func problem1() {
 func problem2() {
 	names := []string{"太郎","花子","次郎","美咲","健太"}
 	scores := []int{85,92,78,88,95}
-	var min int
-	var max int
+	var minScore int = scores[0] 
+	var minName string = names[0]
+	var maxScore int = scores[0]
+	var maxName string = names[0]
 	var total float64 = 0
-	var total_count int = 0
 	for i := range names {
 		fmt.Printf("%s: %d点\n",names[i], scores[i])
-		if min > scores[i] {
-			min = scores[i]
+		if minScore > scores[i] {
+			minScore = scores[i]
+			minName = names[i]
 		}
-		if max < scores[i] {
-			max = scores[i]
+		if maxScore < scores[i] {
+			maxScore = scores[i]
+			maxsName = names[i]
 		}
 		total += float64(scores[i])
-		total_count++
 	}
-	var average float64 = total / float64(total_count)
+	var average float64 = total / float64(len(names))
 	fmt.Println("---")
 	fmt.Printf("平均点: %f\n",average)
-	fmt.Printf("最高点: %d\n",max)
-	fmt.Printf("最低点: %d\n",min)
+	fmt.Printf("最高点: %d (%s)\n",maxScore, maxName)
+	fmt.Printf("最低点: %d (%s)\n",minScore, minName)
 	fmt.Println("---")
 
 	var border int = 80
