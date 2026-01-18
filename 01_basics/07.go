@@ -138,8 +138,38 @@ func problem1() {
 */
 
 func problem2() {
-	// ここにコードを書いてください
+	stock := map[string]int{
+		"ノートPC": 15,
+		"マウス": 50,
+		"キーボード": 30,
+		"モニター": 8,
+		"ヘッドセット": 25,
+	}
 
+	totalStock := 0
+	for item, quantity := range stock{
+		fmt.Printf("%s: %d個\n", item, quantity)
+		totalStock += quantity
+	}
+	fmt.Printf("総在庫数: %d個\n", totalStock)
+	totalStock = 0
+	// 入荷処理
+	stock["ノートPC"] += 15 
+	fmt.Printf("%s:  %d個 => %d個\n", "ノートPC", 15, stock["ノートPC"])
+	stock["モニター"] += 8 
+	fmt.Printf("%s:  %d個 => %d個\n", "モニター", 8, stock["モニター"])
+	// 出荷処理
+	stock["マウス"] -= 45
+	fmt.Printf("%s:  -%d個 => %d個\n", "マウス", 45, stock["マウス"])
+	stock["ヘッドセット"] -= 30
+	fmt.Printf("%s:  -%d個 => %d個\n", "ヘッドセット", 30, stock["ヘッドセット"])
+	for item, quantity := range stock{
+		if quantity <= 10 {
+			fmt.Printf("☣%s: %d個\n", item, quantity)
+		}
+		totalStock += quantity
+	}
+	fmt.Printf("総在庫数: %d個\n", totalStock)
 }
 
 // ========== 問題3 ==========
