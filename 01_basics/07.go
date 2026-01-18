@@ -48,8 +48,40 @@ import "fmt"
 */
 
 func problem1() {
-	// ここにコードを書いてください
+	// マップはハッシュテーブルというデータ構造を用いているため、o(1)で出力できる
+	NamePhoneTable := map[string]string{
+		"太郎": "090-1234-5678",
+		"花子": "080-2345-6789",
+		"次郎": "070-3456-7890",
+		"美咲": "090-4567-8901",
+		"健太": "080-5678-9012",
+	}
 
+	regLength := len(NamePhoneTable)
+	fmt.Printf("登録件数: %d件\n",regLength)
+	for name, phoneNumber := range NamePhoneTable{
+		fmt.Printf("%s: %s\n", name, phoneNumber)	
+	}
+
+	fmt.Println("検索")
+	sName1 := "太郎"
+	if phone, ok := NamePhoneTable[sName1]; ok {
+		fmt.Printf("%sさんの電話番号は%sです\n", sName1, phone)
+		}else{
+			fmt.Printf("%sさんの電話番号は未登録です",sName1)
+		}
+		sName2 := "佐藤"
+		if phone, ok := NamePhoneTable[sName2]; ok {
+			fmt.Printf("%sさんの電話番号は%sです\n", sName2, phone)
+			}else{
+				fmt.Printf("%sさんの電話番号は未登録です",sName2)
+			}
+
+	fmt.Println("削除")
+	delete(NamePhoneTable, "太郎")
+	for name, phoneNumber := range NamePhoneTable{
+		fmt.Printf("%s: %s\n", name, phoneNumber)	
+	}
 }
 
 // ========== 問題2 ==========
