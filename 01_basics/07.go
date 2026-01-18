@@ -137,39 +137,99 @@ func problem1() {
 - 実用的なデータ管理
 */
 
+// func problem2() {
+// 	stock := map[string]int{
+// 		"ノートPC": 15,
+// 		"マウス": 50,
+// 		"キーボード": 30,
+// 		"モニター": 8,
+// 		"ヘッドセット": 25,
+// 	}
+
+// 	totalStock := 0
+// 	for item, quantity := range stock{
+// 		fmt.Printf("%s: %d個\n", item, quantity)
+// 		totalStock += quantity
+// 	}
+// 	fmt.Printf("総在庫数: %d個\n", totalStock)
+// 	totalStock = 0
+// 	// 入荷処理
+// 	stock["ノートPC"] += 15 
+// 	fmt.Printf("%s:  %d個 => %d個\n", "ノートPC", 15, stock["ノートPC"])
+// 	stock["モニター"] += 8 
+// 	fmt.Printf("%s:  %d個 => %d個\n", "モニター", 8, stock["モニター"])
+// 	// 出荷処理
+// 	stock["マウス"] -= 45
+// 	fmt.Printf("%s:  -%d個 => %d個\n", "マウス", 45, stock["マウス"])
+// 	stock["ヘッドセット"] -= 30
+// 	fmt.Printf("%s:  -%d個 => %d個\n", "ヘッドセット", 30, stock["ヘッドセット"])
+// 	for item, quantity := range stock{
+// 		if quantity <= 10 {
+// 			fmt.Printf("☣%s: %d個\n", item, quantity)
+// 		}
+// 		totalStock += quantity
+// 	}
+// 	fmt.Printf("総在庫数: %d個\n", totalStock)
+// }
+
 func problem2() {
 	stock := map[string]int{
-		"ノートPC": 15,
-		"マウス": 50,
-		"キーボード": 30,
-		"モニター": 8,
+		"ノートPC":   15,
+		"マウス":     50,
+		"キーボード":   30,
+		"モニター":    8,
 		"ヘッドセット": 25,
 	}
 
-	totalStock := 0
-	for item, quantity := range stock{
-		fmt.Printf("%s: %d個\n", item, quantity)
-		totalStock += quantity
+	fmt.Println("========== 初期在庫 ==========")
+	total := 0
+	for item, q := range stock {
+		fmt.Printf("%s: %d個\n", item, q)
+		total += q
 	}
-	fmt.Printf("総在庫数: %d個\n", totalStock)
-	totalStock = 0
-	// 入荷処理
-	stock["ノートPC"] += 15 
-	fmt.Printf("%s:  %d個 => %d個\n", "ノートPC", 15, stock["ノートPC"])
-	stock["モニター"] += 8 
-	fmt.Printf("%s:  %d個 => %d個\n", "モニター", 8, stock["モニター"])
-	// 出荷処理
-	stock["マウス"] -= 45
-	fmt.Printf("%s:  -%d個 => %d個\n", "マウス", 45, stock["マウス"])
-	stock["ヘッドセット"] -= 30
-	fmt.Printf("%s:  -%d個 => %d個\n", "ヘッドセット", 30, stock["ヘッドセット"])
-	for item, quantity := range stock{
-		if quantity <= 10 {
-			fmt.Printf("☣%s: %d個\n", item, quantity)
+	fmt.Printf("---\n総在庫数: %d個\n\n", total)
+
+	fmt.Println("========== 入荷処理 ==========")
+	plusPC := 10
+	stock["ノートPC"] += plusPC
+	fmt.Printf("ノートPC +%d個 → %d個\n", plusPC, stock["ノートPC"])
+
+	fmt.Println("\n========== 出荷処理 ==========")
+	// 出荷（正常）
+	minusMouse := 45
+	stock["マウス"] -= minusMouse
+	fmt.Printf("マウス -%d個 → %d個\n", minusMouse, stock["マウス"])
+
+	// 出荷（在庫不足チェック）
+	minusHeadset := 30
+	if stock["ヘッドセット"] < minusHeadset {
+		fmt.Printf("ヘッドセット -%d個 → %d個 (エラー: 在庫不足)\n", minusHeadset, stock["ヘッドセット"])
+	} else {
+		stock["ヘッドセット"] -= minusHeadset
+	}
+
+	fmt.Println("\n========== 在庫レポート ==========")
+	total = 0
+	lowStockItems := "" // 在庫少の商品をメモしておく
+
+	for item, q := range stock {
+		fmt.Printf("%s: %d個\n", item, q)
+		total += q
+		
+		// 在庫10個以下の商品をチェック
+		if q <= 10 {
+			lowStockItems += fmt.Sprintf("⚠ %s: %d個\n", item, q)
 		}
-		totalStock += quantity
 	}
-	fmt.Printf("総在庫数: %d個\n", totalStock)
+
+	fmt.Println("\n【在庫少（10個以下）】")
+	if lowStockItems == "" {
+		fmt.Println("なし")
+	} else {
+		fmt.Print(lowStockItems)
+	}
+
+	fmt.Printf("\n総在庫数: %d個\n", total)
 }
 
 // ========== 問題3 ==========
