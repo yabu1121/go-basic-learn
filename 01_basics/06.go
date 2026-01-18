@@ -230,10 +230,13 @@ func problem3() {
 	copy(c2, res2)
 	res3 := append(c2, []int{6,7,8}...)
 
-	fmt.Printf("slice: %d cap: %d len: %d\n", initial, cap(initial), len(initial))
-	fmt.Printf("slice: %d cap: %d len: %d\n", res1, cap(res1), len(res1))
-	fmt.Printf("slice: %d cap: %d len: %d\n", res2, cap(res2), len(res2))
-	fmt.Printf("slice: %d cap: %d len: %d\n", res3, cap(res3), len(res3))
+	// スライスは基本的に%vで　スライシングはメモリを確保しないため高速で動作する
+	// 展開演算子を用いればスライスをバラバラにする。appendを動かすためには必要
+	// make, copyでディープコピーをする
+	fmt.Printf("slice: %v cap: %d len: %d\n", initial, cap(initial), len(initial))
+	fmt.Printf("slice: %v cap: %d len: %d\n", res1, cap(res1), len(res1))
+	fmt.Printf("slice: %v cap: %d len: %d\n", res2, cap(res2), len(res2))
+	fmt.Printf("slice: %v cap: %d len: %d\n", res3, cap(res3), len(res3))
 }
 
 func main() {
