@@ -114,7 +114,7 @@ func problem2() {
 		}
 		if maxScore < scores[i] {
 			maxScore = scores[i]
-			maxsName = names[i]
+			maxName = names[i]
 		}
 		total += float64(scores[i])
 	}
