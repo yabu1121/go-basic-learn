@@ -99,40 +99,81 @@ func problem1() {
 */
 
 func problem2() {
-	names := []string{"太郎","花子","次郎","美咲","健太"}
-	scores := []int{85,92,78,88,95}
-	var minScore int = scores[0] 
-	var minName string = names[0]
-	var maxScore int = scores[0]
-	var maxName string = names[0]
-	var total float64 = 0
-	for i := range names {
-		fmt.Printf("%s: %d点\n",names[i], scores[i])
-		if minScore > scores[i] {
-			minScore = scores[i]
-			minName = names[i]
-		}
-		if maxScore < scores[i] {
-			maxScore = scores[i]
-			maxName = names[i]
-		}
-		total += float64(scores[i])
-	}
-	var average float64 = total / float64(len(names))
-	fmt.Println("---")
-	fmt.Printf("平均点: %f\n",average)
-	fmt.Printf("最高点: %d (%s)\n",maxScore, maxName)
-	fmt.Printf("最低点: %d (%s)\n",minScore, minName)
-	fmt.Println("---")
+	// names := []string{"太郎","花子","次郎","美咲","健太"}
+	// scores := []int{85,92,78,88,95}
+	// var minScore int = scores[0] 
+	// var minName string = names[0]
+	// var maxScore int = scores[0]
+	// var maxName string = names[0]
+	// var total float64 = 0
+	// for i := range names {
+	// 	fmt.Printf("%s: %d点\n",names[i], scores[i])
+	// 	if minScore > scores[i] {
+	// 		minScore = scores[i]
+	// 		minName = names[i]
+	// 	}
+	// 	if maxScore < scores[i] {
+	// 		maxScore = scores[i]
+	// 		maxName = names[i]
+	// 	}
+	// 	total += float64(scores[i])
+	// }
+	// var average float64 = total / float64(len(names))
+	// fmt.Println("---")
+	// fmt.Printf("平均点: %f\n",average)
+	// fmt.Printf("最高点: %d (%s)\n",maxScore, maxName)
+	// fmt.Printf("最低点: %d (%s)\n",minScore, minName)
+	// fmt.Println("---")
 
-	var border int = 80
-	fmt.Println("---成績優秀者---")
-	for i := range scores {
-		if scores[i] >= border {
-			fmt.Printf("%s: %d点\n", names[i], scores[i])
-		}
+	// var border int = 80
+	// fmt.Println("---成績優秀者---")
+	// for i := range scores {
+	// 	if scores[i] >= border {
+	// 		fmt.Printf("%s: %d点\n", names[i], scores[i])
+	// 	}
+	// }
+
+	type Student struct {
+		Name string
+		Score int
+	}
+
+	var students = []Student{
+		{Name: "太郎", Score: 85},
+		{Name: "花子", Score: 92},
+		{Name: "次郎", Score: 78},
+		{Name: "美咲", Score: 88},
+		{Name: "健太", Score: 95},
+	}
+
+	best := students[0]
+	worst := students[0]
+	total := 0.0
+	for _, s := range students {
+	fmt.Printf("%s: %d点\n", s.Name, s.Score)
+	total += float64(s.Score)
+
+	if s.Score > best.Score {
+		best = s
+	}
+	if s.Score < worst.Score {
+		worst = s
 	}
 }
+
+// 5. 結果の出力
+fmt.Printf("---\n平均点: %.1f点\n", total/float64(len(students)))
+fmt.Printf("最高点: %d点 (%s)\n", best.Score, best.Name)
+fmt.Printf("最低点: %d点 (%s)\n---", worst.Score, worst.Name)
+
+// 6. フィルタリング（優秀者）
+fmt.Println("\n========== 優秀者（80点以上）==========")
+for _, s := range students {
+	if s.Score >= 80 {
+		fmt.Printf("- %s: %d点\n", s.Name, s.Score)
+	}
+}
+} 
 
 // ========== 問題3 ==========
 /*
