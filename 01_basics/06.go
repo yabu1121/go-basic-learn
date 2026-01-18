@@ -220,8 +220,20 @@ for _, s := range students {
 */
 
 func problem3() {
-	// ここにコードを書いてください
+	initial := []int{1,2,3,4,5}
+	// 安全な書き方 スライス同士足し合わせれば安全になるってこと？
+	res1 := append(initial[:2], append([]int{10}, initial[2:]...)...)
+	c := make([]int, len(res1))
+	copy(c, res1)
+	res2 := append(c[:4], c[5:]...)
+	c2 := make([]int, len(res2))
+	copy(c2, res2)
+	res3 := append(c2, []int{6,7,8}...)
 
+	fmt.Printf("slice: %d cap: %d len: %d\n", initial, cap(initial), len(initial))
+	fmt.Printf("slice: %d cap: %d len: %d\n", res1, cap(res1), len(res1))
+	fmt.Printf("slice: %d cap: %d len: %d\n", res2, cap(res2), len(res2))
+	fmt.Printf("slice: %d cap: %d len: %d\n", res3, cap(res3), len(res3))
 }
 
 func main() {
