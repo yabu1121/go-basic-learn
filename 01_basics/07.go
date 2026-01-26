@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
 
 /*
 【07_maps.go の練習問題】
@@ -280,8 +284,51 @@ fun: ██ (1)
 */
 
 func problem3() {
-	// ここにコードを書いてください
+	var sampleText string = "Go is a programming language. Go is simple and Go is fast. Programming in Go is fun. Go Go Go!"
+	// NewReplacer()で０を１に２を３にする。replce(source)って書く。
+	var cleanText string = strings.NewReplacer(".", "", "!", "").Replace(sampleText);
+	words := strings.Fields(cleanText)
+	wordGroup := make(map[string]int)
+	for _, word := range words {
+		wordGroup[word]++
+	}
+	type wordCount struct {
+		word  string
+		count int
+	}
+	var ranking []wordCount
+	for word, count := range wordGroup {
+		ranking = append(ranking, wordCount{word, count})
+	}
 
+	// ソート実行（countの降順、同じなら単語の昇順）
+	sort.Slice(ranking, func(i, j int) bool {
+		if ranking[i].count != ranking[j].count {
+			return ranking[i].count > ranking[j].count
+		}
+		return ranking[i].word < ranking[j].word
+	})
+
+	// 4 & 5. 結果の出力
+	fmt.Println("========== 文章 ==========")
+	fmt.Println(sampleText)
+	fmt.Println("\n========== 単語出現回数 ==========")
+	fmt.Printf("総単語数: %d\n", len(words))
+	fmt.Printf("ユニーク単語数: %d\n", len(wordGroup))
+
+	fmt.Println("\n【出現回数ランキング】")
+	for i := 0; i < len(ranking) && i < 5; i++ {
+		fmt.Printf("%d位: %s (%d回)\n", i+1, ranking[i].word, ranking[i].count)
+	}
+
+	fmt.Println("\n【全単語一覧】")
+	for _, wc := range ranking {
+		// 簡易グラフの表示：1回につき "██" を表示
+		graph := strings.Repeat("-", wc.count)
+		fmt.Printf("%s: %s (%d)\n", wc.word, graph, wc.count)
+	}
+	// %#v Go言語の構文で表現
+	// fmt.Printf("%#v", words)
 }
 
 func main() {
