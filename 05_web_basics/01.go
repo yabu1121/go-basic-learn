@@ -16,7 +16,7 @@ func main() {
 	http.HandleFunc("/api/user", userHandler)
 	http.HandleFunc("/api/users", usersHandler)
 	http.HandleFunc("/api/user/create", createHandler)
-	http.HandleFunc("/api/user/search", searchHandler)
+	http.HandleFunc("/api/search", searchHandler)
 
 	// logライブラリを用いてport8081番を用いてhttpリクエストを待ち受ける。
 	// 第一引数、ポートを指定、第二引数nilを渡すとhttp.DefaultServeMuxを使用する。
@@ -101,7 +101,7 @@ func createHandler (w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	
+
 	// var req CreateUserRequestというのはとりあえず宣言しておく。
 	// さいしょはから　。
 	// jsonのbodyを読み取ってgoの構造体reqに変換して流し込む。
@@ -115,7 +115,7 @@ func createHandler (w http.ResponseWriter, r *http.Request) {
 	// 慣習的にはリソースを弾いたらすぐに書くのが一般的
 	defer r.Body.Close()
 
-	//　バリデーション 
+	//　バリデーション
 	if req.Name == "" || req.Email == "" {
 		resp := Response{
 			Success: false,
@@ -132,7 +132,7 @@ func createHandler (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 
+	//
 	newUser := User{
 		ID: 100,
 		Name: req.Name,
@@ -144,7 +144,7 @@ func createHandler (w http.ResponseWriter, r *http.Request) {
 		Message: "ユーザー作成成功",
 		Data: newUser,
 	}
-	
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(resp)
@@ -153,6 +153,35 @@ func createHandler (w http.ResponseWriter, r *http.Request) {
 
 func searchHandler (w http.ResponseWriter, r *http.Request) {
 	// クエリパラメータを用いたデータ取得
+	// r.URL.Query(): URLの?以降の部分を解析したオブジェクトを取得する
+	// .Get("q"): q=xxxのxxx部分を取り出す。
+	// http://localhost:8080/api/search?q=daf
+	// {
+	// 	"success": true,
+	// 	"message": "検索成功",
+	// 	"data": {
+	// 		"page": "1",
+	// 		"query": "daf"
+	// 	}
+	// }
+	// http://localhost:8080/api/search?q=daf?page=2
+	// {
+	// 	"success": true,
+	// 	"message": "検索成功",
+	// 	"data": {
+	// 		"page": "1",
+	// 		"query": "daf?page=2"
+	// 	}
+	// }
+	// http://localhost:8080/api/search?q=daf&page=2
+	// {
+	// 	"success": true,
+	// 	"message": "検索成功",
+	// 	"data": {
+	// 		"page": "2",
+	// 		"query": "daf"
+	// 	}
+	// }
 	query := r.URL.Query().Get("q")
 	page := r.URL.Query().Get("page")
 
