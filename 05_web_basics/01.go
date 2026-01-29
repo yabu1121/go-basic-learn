@@ -14,7 +14,7 @@ func main() {
 	http.HandleFunc("/hello", helloHandler)
 	http.HandleFunc("/time", timeHandler)
 	http.HandleFunc("/api/user", userHandler)
-	http.HandleFunc("/api/users", userHandler)
+	http.HandleFunc("/api/users", usersHandler)
 
 	// logライブラリを用いてport8081番を用いてhttpリクエストを待ち受ける。
 	// 第一引数、ポートを指定、第二引数nilを渡すとhttp.DefaultServeMuxを使用する。
