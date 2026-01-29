@@ -2,14 +2,12 @@ services:
   app:
     build: .
     container_name: golearn-container
-    # ホストのディレクトリをコンテナにマウント
     volumes:
       - .:/app
-    # Webサーバー開発用にポートを開放
     ports:
+      # ホストの8081ポートをコンテナの8080ポートにマッピング
+      # (8080は他のプロセスで使用中のため)
       - "8080:8080"
-    # コンテナを起動し続けるためのコマンド
     command: tail -f /dev/null
-    # 環境変数の設定 (必要に応じて)
     environment:
       - CGO_ENABLED=1
