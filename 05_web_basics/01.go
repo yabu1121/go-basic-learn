@@ -17,6 +17,7 @@ func main() {
 	http.HandleFunc("/api/users", usersHandler)
 	http.HandleFunc("/api/user/create", createHandler)
 	http.HandleFunc("/api/search", searchHandler)
+	http.HandleFunc("/api/posts/1", postHandler)
 
 	// logライブラリを用いてport8081番を用いてhttpリクエストを待ち受ける。
 	// 第一引数、ポートを指定、第二引数nilを渡すとhttp.DefaultServeMuxを使用する。
@@ -207,3 +208,31 @@ func searchHandler (w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(resp)
 }
 
+
+// /api/posts/1
+// を入力して取得するロジックに利用できる。
+// 本来はidが1のものを取得するが、簡単に実行している。
+// pathパラメータという。
+func postHandler (w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Path[len("/api/posts/"):]
+
+	if id == "" {
+		http.Error(w, "投稿IDが必要です", http.StatusBadRequest) 
+		return
+	}
+
+	post := map[string]interface{}{
+		"id": id,
+		"title": "sample",
+		"body": "string",
+	}
+
+	resp := Response{
+		Success: true,
+		Message: "投稿取得成功",
+		Data: post,
+	}
+	
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(resp)
+}
