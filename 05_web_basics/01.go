@@ -16,6 +16,7 @@ func main() {
 	http.HandleFunc("/api/user", userHandler)
 	http.HandleFunc("/api/users", usersHandler)
 	http.HandleFunc("/api/user/create", createHandler)
+	http.HandleFunc("/api/user/search", searchHandler)
 
 	// logライブラリを用いてport8081番を用いてhttpリクエストを待ち受ける。
 	// 第一引数、ポートを指定、第二引数nilを渡すとhttp.DefaultServeMuxを使用する。
@@ -146,5 +147,33 @@ func createHandler (w http.ResponseWriter, r *http.Request) {
 	
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(resp)
+}
+
+
+func searchHandler (w http.ResponseWriter, r *http.Request) {
+	// クエリパラメータを用いたデータ取得
+	query := r.URL.Query().Get("q")
+	page := r.URL.Query().Get("page")
+
+	if query == "" {
+		http.Error(w, "検索キーワードが必要です", http.StatusBadRequest)
+		return
+	}
+
+	if page == "" {
+		page = "1"
+	}
+
+	resp := Response{
+		Success: true,
+		Message: "検索成功",
+		Data: map[string]string{
+			"query": query,
+			"page": page,
+		},
+	}
+
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(resp)
 }
