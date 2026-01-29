@@ -85,41 +85,59 @@ func usersHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 
+// request(postメソッドで送信するオブジェクトの型を指定する)
 type CreateUserRequest struct {
 	Name string `json:"name"`
 	Email string `json:"email"`
 }
 
+// createhandle関数を宣言これはhttp, handlefuncで呼び出す関数。
+// w: クライアントへ送るレスポンスを書き込むための道具
+// r: クライアントから届いたリクエストの情報が入っている。
 func createHandler (w http.ResponseWriter, r *http.Request) {
+	// r.Methodは普通にrequestのメソッドがある、それを指定できるのがhttp.methodPostなど
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 	
+	// var req CreateUserRequestというのはとりあえず宣言しておく。
+	// さいしょはから　。
+	// jsonのbodyを読み取ってgoの構造体reqに変換して流し込む。
+	// defer: その関数が終了する直前に、特定の処理を必ず実行させる
 	var req CreateUserRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
 	}
+	// 慣習的にはリソースを弾いたらすぐに書くのが一般的
 	defer r.Body.Close()
 
+	//　バリデーション 
 	if req.Name == "" || req.Email == "" {
 		resp := Response{
 			Success: false,
 			Message: "名前とメールアドレスは必須です",
 		}
+
+		// headerに記述する
+		// Content-Type:application/jsonである。
+		// つまりjson形式で記述されていることをヘッダーに示す。
+		// 最悪これがなくても一応処理はできる。
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(resp)
 		return
 	}
 
+	// 
 	newUser := User{
 		ID: 100,
 		Name: req.Name,
 		Email: req.Email,
 	}
+
 	resp := Response{
 		Success: true,
 		Message: "ユーザー作成成功",
