@@ -8,6 +8,6 @@ services:
       # ホストの8081ポートをコンテナの8080ポートにマッピング
       # (8080は他のプロセスで使用中のため)
       - "8080:8080"
-    command: tail -f /dev/null
+    command: air -c .air.toml
     environment:
       - CGO_ENABLED=1

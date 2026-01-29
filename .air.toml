@@ -7,7 +7,7 @@ tmp_dir = "tmp"
 
 [build]
 # Just plain commands for building your app.
-cmd = "go build -o ./tmp/main ."
+cmd = "go build -o ./tmp/main ./05_web_basics/01.go"
 # Binary file yields from `cmd`.
 bin = "./tmp/main"
 # Customize binary, can setup environment variables when run your app.
