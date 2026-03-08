@@ -27,12 +27,22 @@ func main() {
 	// time.Sleep(500 * time.Millisecond)
 
 	// 複数の並列
-	for i := 1; i <= 5; i++ {
-		go func (n int){
-			fmt.Printf("%d\n", i)	
-		}(i)
-		time.Sleep(1000 * time.Millisecond)
-	}
+	// for  i:= 1; i <= 5; i++ {
+	// 	go func (n int){
+	// 		fmt.Printf("%d\n", i)	
+	// 	}(i)
+	// 	time.Sleep(1000 * time.Millisecond)
+	// }i
+
+	// start := time.Now()
+
+	// go task("1", 500)
+	// go task("2", 500)
+	// go task("3", 500)
+	// time.Sleep(600 * time.Millisecond)
+	// fmt.Printf("%v", time.Since(start))
+	// 同期 1.50s
+	// 非同期　0.15ms
 }
 
 // sayHello関数はとりあえず三回繰り返しで
@@ -47,11 +57,11 @@ func main() {
 // 	fmt.Printf("番号: %d\n", n)
 // }
 
-// func task(name string, ms int) {
-// 	fmt.Printf("%s 開始\n", name)
-// 	time.Sleep(time.Duration(ms) * time.Millisecond)
-// 	fmt.Printf("%s 完了\n", name)
-// }
+func task(name string, ms int) {
+	fmt.Printf("%s 開始\n", name)
+	time.Sleep(time.Duration(ms) * time.Millisecond)
+	fmt.Printf("%s 完了\n", name)
+}
 
 /*
 【実行方法】
