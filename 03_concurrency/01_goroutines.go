@@ -110,6 +110,7 @@ func main() {
 	fmt.Println("Goroutineリークに注意！")
 }
 
+// sayHello関数はとりあえず三回繰り返しで
 func sayHello(name string) {
 	for i := 0; i < 3; i++ {
 		fmt.Printf("%s: %d\n", name, i)
